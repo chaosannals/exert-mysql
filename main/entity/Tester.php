@@ -19,7 +19,7 @@ class Tester
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=31)
+     * @ORM\Column(type="string", length=31, unique=true, options={"comment"=""})
      * @var string
      */
     protected $username;
@@ -35,4 +35,16 @@ class Tester
      * @var string
      */
     protected $nickname;
+
+    /**
+     * 性别
+     * @Column(type="boolean")
+     */
+    protected $gender;
+
+    /**
+     * @ORM\Column(name="enter_at", type="datetime")
+     * @var datetime
+     */
+    protected $enterAt;
 }

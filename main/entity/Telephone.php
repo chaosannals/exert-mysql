@@ -19,7 +19,7 @@ class Telephone
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=15)
+     * @ORM\Column(type="string", length=15, unique=true)
      * @var string
      */
     protected $number;

@@ -25,13 +25,13 @@ class WechatNexus
     protected $openid;
 
     /**
-     * @ORM\Column(name="user_id", type="integer")
+     * @ORM\Column(name="user_id", type="integer", options={"comment"="微信用户ID", "unsigned"=true})
      * @var int
      */
     protected $userId;
 
     /**
-     * @ORM\Column(name="official_account_id", type="integer")
+     * @ORM\Column(name="official_account_id", type="integer", options={"comment"="微信公众号ID", "unsigned"=true})
      * @var int
      */
     protected $officialAccountId;

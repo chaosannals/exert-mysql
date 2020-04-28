@@ -13,7 +13,7 @@ class Telephone
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"unsigned"=true})
      * @var int
      */
     protected $id;

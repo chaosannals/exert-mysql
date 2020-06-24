@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="e_wechat_official_account")
+ * @ORM\Table(name="e_telephone")
  */
-class WechatOfficialAccount
+class TelephoneEntity
 {
     /**
      * @ORM\Id
@@ -18,5 +18,9 @@ class WechatOfficialAccount
      */
     protected $id;
 
-
+    /**
+     * @ORM\Column(type="string", length=15, unique=true)
+     * @var string
+     */
+    protected $number;
 }

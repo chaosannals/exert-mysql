@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  *  }
  * )
  */
-class TesterTelephone
+class TesterTelephoneEntity
 {
     /**
      * @ORM\Id

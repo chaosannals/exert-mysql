@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="e_wechat_nexus")
  */
-class WechatNexus
+class WechatNexusEntity
 {
     /**
      * @ORM\Id

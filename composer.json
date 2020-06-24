@@ -20,15 +20,18 @@
         }
     },
     "require": {
-        "doctrine/orm": "^2.7"
+        "doctrine/orm": "^2.7",
+        "vlucas/phpdotenv": "^5.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.1"
     },
     "scripts": {
-        "create": "doctrine orm:schema-tool:create",
-        "drop": "doctrine orm:schema-tool:drop --force",
-        "update": "doctrine orm:schema-tool:update --force",
-        "dump-update": "doctrine orm:schema-tool:update --dump-sql"
+        "test": "phpunit --bootstrap vendor/autoload --testdox test",
+        "db-create": "doctrine orm:schema-tool:create",
+        "db-drop": "doctrine orm:schema-tool:drop --force",
+        "db-update": "doctrine orm:schema-tool:update --force",
+        "db-update-dump": "doctrine orm:schema-tool:update --dump-sql",
+        "seed-grow": "exert\\command\\SeedCommand::grow"
     }
 }

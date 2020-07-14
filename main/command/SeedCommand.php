@@ -3,6 +3,7 @@
 namespace exert\command;
 
 use ReflectionClass;
+use exert\annotation\Seed;
 
 class SeedCommand
 {
@@ -16,10 +17,12 @@ class SeedCommand
             if (!class_exists($class)) {
                 continue;
             }
+
             $reflection = new ReflectionClass($class);
             if (!$reflection->isInstantiable()) {
                 continue;
             }
+            
             $instance = $reflection->newInstance();
             if (!method_exists($instance, 'grow')) {
                 continue;

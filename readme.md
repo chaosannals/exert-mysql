@@ -7,5 +7,5 @@ docker run --restart=always --name mysql -v /host/mysql:/var/lib/mysql -p 3306:3
 ```
 
 ```sh
-echo "\nenforce_gtid_consistency=ON\ngtid_mode=ON\n" >> /etc/mysql/my.cnf
+echo "\nlog_bin=mysql-bin\nbinlog_rows_query_log_events=on\nenforce_gtid_consistency=on\ngtid_mode=on\n" >> /etc/mysql/my.cnf
 ```

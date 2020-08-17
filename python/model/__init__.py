@@ -1,5 +1,4 @@
 from peewee import MySQLDatabase, Model, DateTimeField
-from types import GetSetDescriptorType
 
 db = MySQLDatabase(
     'exert',

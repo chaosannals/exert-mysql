@@ -3,7 +3,7 @@ package replicator
 import (
 	"context"
 	"os"
-	// "github.com/satori/go.uuid"
+	"github.com/satori/go.uuid"
 	"github.com/siddontang/go-mysql/mysql"
 	"github.com/siddontang/go-mysql/replication"
 )
@@ -14,12 +14,12 @@ func ReplicateByPosition() {
 		ServerID: 100,
 		Flavor:   "mysql",
 		Host:     "127.0.0.1",
-		Port:     13306,
+		Port:     3306,
 		User:     "replicator",
 		Password: "123456",
 	}
 	syncer := replication.NewBinlogSyncer(cfg)
-	streamer, _ := syncer.StartSync(mysql.Position{"mysql-bin.000001", 0})
+	streamer, _ := syncer.StartSync(mysql.Position{"binlog.000002", 0})
 	for {
 		ev, _ := streamer.GetEvent(context.Background())
 		ev.Dump(os.Stdout)
@@ -32,10 +32,11 @@ func ReplicateByGUID() {
 		ServerID: 100,
 		Flavor:   "mysql",
 		Host:     "127.0.0.1",
-		Port:     13306,
+		Port:     3306,
 		User:     "replicator",
 		Password: "123456",
 	}
+	
 	syncer := replication.NewBinlogSyncer(cfg)
 	uuid := uuid.Must(uuid.FromString("2d94cff5-c575-11ea-a36d-0242ac110003"))
 	it := mysql.Interval{}

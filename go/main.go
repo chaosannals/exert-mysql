@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	// replicator.ReplicateByPosition()
-	replicator.ReplicateByGUID()
+	replicator.ReplicateByPosition()
+	// replicator.ReplicateByGUID()
 	// replicator.ReplicateByCanal()
 }

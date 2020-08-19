@@ -70,7 +70,7 @@ func (h *CustomEventHandler) String() string {
 //ReplicateByCanalGTID 示例，需要命令下有 mysqldump
 func ReplicateByCanalGTID() {
 	cfg := canal.NewDefaultConfig()
-	cfg.Addr = "127.0.0.1:13306"
+	cfg.Addr = "127.0.0.1:3306"
 	cfg.User = "replicator"
 	cfg.Password = "123456"
 	// cfg.Dump.TableDB = "exert"

@@ -19,5 +19,5 @@ chmod 644 -R /etc/mysql
 为了更稳妥，高版本的 mysql 会只加载 /etc/my.cnf 所以多个挂在的配置文件。该文件可写太高也会被忽略权限最好改成 644。
 
 ```sh
-docker run -e MYSQL_ROOT_PASSWORD=password -p 3306:3306 -v /host/mysql/data:/var/lib/mysql -v /host/mysql/file:/var/lib/mysql-files -v /host/mysql/config:/etc/mysql -v /host/mysql/my.cnf:/etc/my.cnf -d --restart=always --name mysql mysql
+docker run -e MYSQL_ROOT_PASSWORD=password -p 3306:3306 -v /host/mysql/data:/var/lib/mysql -v /host/mysql/file:/var/lib/mysql-files -v /host/mysql/config:/etc/mysql -v /host/mysql/my.cnf:/etc/my.cnf:ro -d --restart=always --name mysql mysql
 ```

@@ -23,12 +23,13 @@ stream = BinLogStreamReader(
     # ],
     blocking=False,
     server_id=2,
-    resume_stream=True,
-    log_file='binlog.000063', # 文件，需要自行记录。RotateEvent 会给出，记得保留。
+    resume_stream=True, # 必须为 True 时，log_file log_pos 定位才有效。
+    log_file='binlog.000099', # 文件，需要自行记录。RotateEvent 会给出，记得保留。
     log_pos=4, # 定位号，需要自行记录。每个文件都是从4开始，之后的定位是根据数据长短跳动的
 )
 
 for binlogevent in stream:
+    print(binlogevent.packet.log_pos)
     if isinstance(binlogevent, RotateEvent):
         print(binlogevent.next_binlog)
     elif hasattr(binlogevent, 'rows'):

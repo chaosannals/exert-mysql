@@ -1,3 +1,4 @@
+import time
 from datetime import datetime
 from pymysqlreplication import BinLogStreamReader
 from pymysqlreplication.row_event import (
@@ -40,7 +41,7 @@ stream = BinLogStreamReader(
     # auto_position 会自动过滤掉指定的 gtid 。
     # auto_position='c8671405-081c-11e9-a407-ec0d9a495964:3472692',
 
-    # skip_to_timestamp='2020-10-01', # 过滤指定时间前的日志
+    # skip_to_timestamp=time.mktime(time.strptime('2020-10-01 16:17:18', '%Y-%m-%d %H:%M:%S')), # 过滤指定时间前的日志
 )
 
 for binlogevent in stream:

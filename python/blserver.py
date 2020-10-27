@@ -26,6 +26,7 @@ stream = BinLogStreamReader(
     resume_stream=True, # 必须为 True 时，log_file log_pos 定位才有效。
     log_file='binlog.000099', # 文件，需要自行记录。RotateEvent 会给出，记得保留。
     log_pos=4, # 定位号，需要自行记录。每个文件都是从4开始，之后的定位是根据数据长短跳动的
+    # auto_position='c8671405-081c-11e9-a407-ec0d9a495964:3472692', # 冒号前为 gtid ，冒号后可以用于定序 比如填 1 则接下来得 gtid 冒号后就从 2 开始返回。
 )
 
 for binlogevent in stream:

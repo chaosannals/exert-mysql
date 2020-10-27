@@ -1,3 +1,4 @@
+from datetime import datetime
 from pymysqlreplication import BinLogStreamReader
 from pymysqlreplication.row_event import (
     DeleteRowsEvent,
@@ -47,7 +48,8 @@ for binlogevent in stream:
     if isinstance(binlogevent, RotateEvent):
         print(binlogevent.next_binlog)
     elif hasattr(binlogevent, 'rows'):
-        print(binlogevent.packet.timestamp)
+        ts = datetime.fromtimestamp(binlogevent.timestamp).isoformat()
+        print(f'{binlogevent.packet.timestamp} @ {ts}')
         for row in binlogevent.rows:
             if isinstance(binlogevent, DeleteRowsEvent):
                 print(dict(row['values'].items()))

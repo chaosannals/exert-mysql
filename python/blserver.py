@@ -47,6 +47,7 @@ for binlogevent in stream:
     if isinstance(binlogevent, RotateEvent):
         print(binlogevent.next_binlog)
     elif hasattr(binlogevent, 'rows'):
+        print(binlogevent.packet.timestamp)
         for row in binlogevent.rows:
             if isinstance(binlogevent, DeleteRowsEvent):
                 print(dict(row['values'].items()))

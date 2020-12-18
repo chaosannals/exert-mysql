@@ -2,6 +2,7 @@ import asyncio
 import glob
 import os
 import aiomysql
+import aiofiles
 
 
 class Migrator:
@@ -61,8 +62,8 @@ class Migrator:
         ps = glob.glob(f'{folder}/*.sql')
         ps.sort()
         for p in ps:
-            with open(p, 'r', encoding='utf8') as reader:
-                c = reader.read()
+            async with aiofiles.open(p, 'r', encoding='utf8') as reader:
+                c = await reader.read()
                 await cls.execute(c)
             print(f'execute: {p}')
 

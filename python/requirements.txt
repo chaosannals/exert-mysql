@@ -1,8 +1,14 @@
+aerich==0.3.2
+aiofiles==0.6.0
+aiomysql==0.0.21
+aiosqlite==0.15.0
 astroid==2.4.2
 autopep8==1.5.4
 cffi==1.14.1
+click==7.1.2
 colorama==0.4.3
 cryptography==3.0
+iso8601==0.1.13
 isort==4.3.21
 lazy-object-proxy==1.4.3
 mccabe==0.6.1
@@ -10,8 +16,12 @@ mysql-replication==0.21
 peewee==3.13.3
 pycodestyle==2.6.0
 pycparser==2.20
+pydantic==1.6.1
 pylint==2.5.3
 PyMySQL==0.9.0
+PyPika==0.42.1
 six==1.15.0
 toml==0.10.1
+tortoise-orm==0.16.17
+typing-extensions==3.7.4.3
 wrapt==1.12.1

@@ -1,0 +1,22 @@
+version: '3.8'
+
+services: 
+  exert-mysql-server:
+    image: mysql
+    container_name: exert-mysql-server
+    ports: 
+      - '3306:3306'
+    volumes: 
+      - ./docker/data/:/var/lib/mysql
+      - ./docker/file/:/var/lib/mysql-files
+      - ./docker/config/:/etc/mysql/:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=exert
+    networks: 
+      - exert-mysql-net
+
+networks: 
+  exert-mysql-net:
+    name: exert-mysql-net
+    driver: bridge

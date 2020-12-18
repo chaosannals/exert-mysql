@@ -3,9 +3,11 @@
 ## Docker
 
 ```sh
-docker run --restart=always --name mysql -v /host/mysql:/var/lib/mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=123456 mysql
+docker-compose up -d
 ```
 
 ```sh
-echo "\nlog_bin=mysql-bin\nbinlog_rows_query_log_events=on\nenforce_gtid_consistency=on\ngtid_mode=on\n" >> /etc/mysql/my.cnf
+# 在 docker 宿主机修改 ./docker/config 的权限。
+# windows 下为 wsl -d docker-desktop 下
+chmod 644 -R ./docker/config
 ```

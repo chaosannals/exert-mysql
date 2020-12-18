@@ -1,0 +1,7 @@
+CREATE TABLE `exert`.`tester` (
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `account` VARCHAR(50) NOT NULL COMMENT '账号',
+  `password` BINARY(64) NULL DEFAULT NULL COMMENT '密码',
+  `nickname` VARCHAR(100) NULL COMMENT '昵称',
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `ACCOUNT_UNIQUE` (`account` ASC) VISIBLE);

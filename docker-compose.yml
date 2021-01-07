@@ -4,6 +4,7 @@ services:
   exert-mysql-server:
     image: mysql
     container_name: exert-mysql-server
+    restart: always
     ports: 
       - '3306:3306'
     volumes: 

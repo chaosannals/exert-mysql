@@ -1,6 +1,7 @@
 import aiomysql
 import re
 
+
 class DB:
     '''
     数据库
@@ -115,6 +116,17 @@ class DB:
         rows = await self.search(f'SHOW COLUMNS FROM `{t}`')
         return [{'field': r[0], 'type': r[1], 'null': r[2], 'key': r[3], 'default': r[4], 'extra': r[5]} for r in rows]
 
+    async def has_columns(self, t, fields):
+        '''
+        查询是否有字段。
+        '''
+
+        columns = await self.list_columns(t)
+        cs = set([c['field'] for c in columns])
+        fs = set(fields)
+        ds = fs - cs
+        return len(ds) == 0
+
     async def rename_column(self, t, oc, nc):
         '''
         修改字段名
@@ -127,7 +139,39 @@ class DB:
             raise NameError()
         df = m.group(1)
         return await self.edit(f'ALTER TABLE `{t}` CHANGE COLUMN `{oc}` `{nc}` {df};')
-        
+
+    async def list_indexes(self, t):
+        '''
+        列举索引。
+        '''
+
+        result = {}
+        rows = await self.search(f'SHOW INDEX FROM `{t}`')
+        for r in rows:
+            key = r[2]
+            ki = r[3] - 1
+            field = r[4]
+            if key not in result:
+                result[key] = {
+                    'fields': []
+                }
+            while (len(result[key]['fields']) <= ki):
+                result[key]['fields'].append(None)
+            result[key]['fields'][ki] = field
+        return result
+
+    async def add_index(self, t, name, fields):
+        '''
+        添加索引
+        '''
+
+        field_list = '`,`'.join(fields)
+        sql = f'''
+        ALTER TABLE `{t}`
+        ADD INDEX `{name}` (`{field_list}` ASC)
+        '''
+        await self.edit(sql)
+        return sql
 
     async def new_user(self, user, password):
         '''

@@ -16,7 +16,7 @@ mysql-replication==0.21
 peewee==3.13.3
 pycodestyle==2.6.0
 pycparser==2.20
-pydantic==1.6.1
+pydantic==1.6.2
 pylint==2.5.3
 PyMySQL==0.9.0
 PyPika==0.42.1

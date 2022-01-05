@@ -7,7 +7,10 @@
 SHOW BINARY LOGS
 
 /* 查询列举事件 */
-SHOW BINLOG EVENTS IN 'mysql-bin.000563' LIMIT 100, 100;
+SHOW BINLOG EVENTS IN 'mysql-bin.000563' FROM 4 LIMIT 100, 100;
+
+/* 查询主机状态 */
+SHOW MASTER STATUS
 
 /* 删除指定日志文件 */
 PURGE MASTER LOGS TO 'mysql-bin.010';

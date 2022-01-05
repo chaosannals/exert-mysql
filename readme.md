@@ -6,6 +6,9 @@
 /* 显示二进制文件列表 */
 SHOW BINARY LOGS
 
+/* 查询列举事件 */
+SHOW BINLOG EVENTS IN 'mysql-bin.000563' LIMIT 100, 100;
+
 /* 删除指定日志文件 */
 PURGE MASTER LOGS TO 'mysql-bin.010';
 

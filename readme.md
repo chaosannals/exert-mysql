@@ -1,5 +1,11 @@
 # [exert-mysql](https://github.com/chaosannals/exert-mysql)
 
+```sql
+/* 赋权 */
+GRANT ALL PRIVILEGES ON schemaname.* TO 'useraccount'@'%';
+FLUSH PRIVILEGES;
+```
+
 ## binlog
 
 ```sql

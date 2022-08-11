@@ -3,7 +3,31 @@
 ```sql
 /* 赋权 */
 GRANT ALL PRIVILEGES ON schemaname.* TO 'useraccount'@'%';
+
+/* 刷新账号修改 */
 FLUSH PRIVILEGES;
+
+/* 查看账号权限 不填 @ 默认是 @'%' */
+SHOW GRANTS FOR useraccount;
+
+/* 出现过空字符串 Host 情况 */
+SHOW GRANTS FOR useraccount@'';
+
+/* 查看账号信息 需要权限 */
+SELECT * FROM mysql.user;
+
+/* 查看账号信息 需要权限 查询 条件 Host  User 等字段 */
+SELECT * FROM mysql.user WHERE Host='' OR User IN ('tester');
+
+/* 创建账号 */
+CREATE USER useraccount IDENTIFIED BY 'password';
+
+/* 删除账号 不填 @ 默认是 @'%' */
+DROP USER useraccount;
+DROP USER useraccount@'%';
+
+/* 出现了创建账号空 host 的情况 */
+DROP USER useraccount@'';
 ```
 
 ## binlog

@@ -18,6 +18,24 @@ services:
     networks: 
       - exert-mysql-net
 
+  exert-mysql56-server:
+    image: mysql/mysql-server:5.6.51
+    container_name: exert-mysql56-server
+    restart: always
+    ports: 
+      - '3307:3306'
+      - '33070:33060'
+    volumes: 
+      - ./docker/data56/:/var/lib/mysql
+      - ./docker/file56/:/var/lib/mysql-files
+      #- ./docker/config/:/etc/mysql/:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=exert
+      - MYSQL_HOST=%
+    networks: 
+      - exert-mysql-net
+
 networks: 
   exert-mysql-net:
     name: exert-mysql-net

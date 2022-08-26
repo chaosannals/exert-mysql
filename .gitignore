@@ -1,5 +1,5 @@
 /.*/
-/docker/data/
-/docker/file/
+/docker/data*/
+/docker/file*/
 *.exe
 *.log

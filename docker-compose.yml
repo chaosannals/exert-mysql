@@ -17,6 +17,9 @@ services:
       - MYSQL_DATABASE=exert
     networks: 
       - exert-mysql-net
+    security_opt:
+      # 特权容器无限制，不然报没权限。
+      - seccomp:unconfined
 
   exert-mysql56-server:
     image: mysql/mysql-server:5.6.51

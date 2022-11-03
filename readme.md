@@ -28,6 +28,12 @@ DROP USER useraccount@'%';
 
 /* 出现了创建账号空 host 的情况 */
 DROP USER useraccount@'';
+
+/* 修改密码 */
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+
+/* 修改密码指定加密类型，用 mysql 命令行客户端本地首次修改 root 密码必须是 localhost 的 */
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 ```
 
 ## binlog

@@ -4,6 +4,15 @@
 /* 赋权 */
 GRANT ALL PRIVILEGES ON schemaname.* TO 'useraccount'@'%';
 
+/* 赋权，指定权限 */
+GRANT DROP, SELECT ON schemaname.* TO useraccount@'%'; 
+
+/* 删除权限 */
+REVOKE ALL ON schemaname.* FROM useraccount@'%';
+
+/* 删除权限，指定权限 */
+REVOKE DROP, SELECT ON schemaname.* FROM useraccount@'%';
+
 /* 刷新账号修改 */
 FLUSH PRIVILEGES;
 

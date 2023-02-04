@@ -32,10 +32,10 @@ services:
       - ./docker/data56/:/var/lib/mysql
       - ./docker/file56/:/var/lib/mysql-files
       #- ./docker/config/:/etc/mysql/:ro
-    environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=exert
-      - MYSQL_HOST=%
+    # environment:
+    #   - MYSQL_ROOT_PASSWORD=password
+    #   - MYSQL_DATABASE=exert
+    #   - MYSQL_HOST=%
     networks: 
       - exert-mysql-net
 

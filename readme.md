@@ -87,3 +87,15 @@ docker-compose up -d
 /* 设置密码 */
 SET PASSWORD for 'root'@'localhost' = PASSWORD('password');
 ```
+
+## MySQL 5.5
+
+需要找到 /etc/my.cnf 删掉 skip_name_resolve 才命令行能用 mysql -p root 登录。
+
+```bash
+# 首次只能通过该命令执行，去掉 skip_name_resolve，不然首次也不行。
+mysql 
+
+# 这个命令首次无法运行。
+mysql -e "SET PASSWORD for 'root'@'localhost' = PASSWORD('password');"
+```

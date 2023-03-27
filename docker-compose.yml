@@ -31,7 +31,7 @@ services:
     volumes: 
       - ./docker/data56/:/var/lib/mysql
       - ./docker/file56/:/var/lib/mysql-files
-      #- ./docker/config/:/etc/mysql/:ro
+      # - ./docker/conf56/my.cnf:/etc/my.cnf:ro
     # environment:
     #   - MYSQL_ROOT_PASSWORD=password
     #   - MYSQL_DATABASE=exert
@@ -49,11 +49,15 @@ services:
     volumes: 
       - ./docker/data55/:/var/lib/mysql
       - ./docker/file55/:/var/lib/mysql-files
-      #- ./docker/config/:/etc/mysql/:ro
-    environment:
-      - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_DATABASE=exert
-      - MYSQL_HOST=%
+      - ./docker/conf55/my.cnf:/etc/my.cnf
+    # environment:
+    #   - MYSQL_ROOT_PASSWORD=password
+    #   - MYSQL_DATABASE=exert
+    #   - MYSQL_HOST=%
+    # 这 5.5 很不适合 docker 很多都要手动操作，最后通过 --skip-grant-tables 跳过权限认证。。
+    # 首次登录 mysql 必须设置权限，不然下次登录就开始验证，只能通过 mysql 交互式接口，无法通过 mysql -e 传递命令，这样很不 docker 。
+    command: >
+      bash -c "chmod 644 /etc/my.cnf && /entrypoint.sh mysqld --skip-grant-tables"
     networks: 
       - exert-mysql-net
 

@@ -1,7 +1,7 @@
 version: '3.8'
 
 services: 
-  exert-mysql-server:
+  exert-mysql80-server:
     image: mysql:8.0.26
     container_name: exert-mysql-server
     restart: always
@@ -31,6 +31,24 @@ services:
     volumes: 
       - ./docker/data56/:/var/lib/mysql
       - ./docker/file56/:/var/lib/mysql-files
+      #- ./docker/config/:/etc/mysql/:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=exert
+      - MYSQL_HOST=%
+    networks: 
+      - exert-mysql-net
+
+  exert-mysql55-server:
+    image: mysql/mysql-server:5.5.62
+    container_name: exert-mysql55-server
+    restart: always
+    ports: 
+      - '3308:3306'
+      - '33080:33060'
+    volumes: 
+      - ./docker/data55/:/var/lib/mysql
+      - ./docker/file55/:/var/lib/mysql-files
       #- ./docker/config/:/etc/mysql/:ro
     environment:
       - MYSQL_ROOT_PASSWORD=password

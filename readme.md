@@ -1,11 +1,23 @@
 # [exert-mysql](https://github.com/chaosannals/exert-mysql)
 
 ```sql
+/* 列举数据库 */
+SHOW DATABASES;
+
+/* 列举表 */
+SHOW TABLES;
+
+```
+
+```sql
 /* 赋权 */
 GRANT ALL PRIVILEGES ON schemaname.* TO 'useraccount'@'%';
 
 /* 赋权，指定权限 */
 GRANT DROP, SELECT ON schemaname.* TO useraccount@'%'; 
+
+/* 赋权，指定权限和密码(已有账号，如果再赋权，在一些特定条件下，密码会被清掉，所以赋权要带上原密码。) */
+GRANT ALL PRIVILEGES ON schemaname.* TO useraccount@'%' IDENTIFIED BY '123456' WITH GRANT OPTION; 
 
 /* 删除权限 */
 REVOKE ALL ON schemaname.* FROM useraccount@'%';
@@ -43,6 +55,9 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
 
 /* 修改密码指定加密类型，用 mysql 命令行客户端本地首次修改 root 密码必须是 localhost 的 */
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
+
+/* 直接通过更新mysql.user 数据库修改密码，但是账号要有权限，有时候公司给你的账号权限不够 */
+UPDATE mysql.user SET password=PASSWORD('123456') WHERE user='username';
 ```
 
 ## binlog

@@ -114,3 +114,29 @@ mysql
 # 这个命令首次无法运行。
 mysql -e "SET PASSWORD for 'root'@'localhost' = PASSWORD('password');"
 ```
+
+## 5.7 后 sql_mode ONLY_FULL_GROUP_BY 限制
+
+### 1. 在运行时修改，重启 MYSQL 会复原配置。
+
+```sql
+/* 查看 */
+SELECT @@global.sql_mode
+
+/* 复制查看到的内容去掉 ONLY_FULL_GROUP_BY 再设置，设置完要重新链接才能更新配置。 */
+SET GLOBAL sql_mode='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'
+```
+
+### 2. 修改配置文件，去掉 ONLY_FULL_GROUP_BY
+
+```ini
+sql_mode='STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION'
+```
+
+### 3. 使用特定函数，单独修改 SQL 的写法绕过限制(8.0 亲测不行，可能是 5.7 才行)
+
+any_value
+group_concat
+
+
+
